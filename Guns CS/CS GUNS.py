@@ -2,17 +2,19 @@ import pygame as py
 import keyboard as key
 import sys
 import config
-
 py.init()
 screen = py.display.set_mode((450,450))
 py.display.set_caption('Choose Guns CS1.6')
 time = py.time.Clock()
+introduccion = py.font.Font(None,20)
 text = py.font.Font(None,20)
 text_2 = py.font.Font(None,20)
 text_3 = py.font.Font(None,20)
-text_surface = text.render(f"Presiona 0 para {config.tecla_1}",True,"white")
-text_surface_2 = text_2.render(f"Presiona 9 para {config.tecla_2}",True,"white")
-text_surface_3 = text_3.render(f"Presiona 8 para {config.tecla_3}",True,"white")
+intro = introduccion.render(f"Presiona la tecla + para quitar el menu",True,"grey")
+text_surface = text.render(f"Presiona 0 para {config.tecla_1}",True,"grey")
+text_surface_2 = text_2.render(f"Presiona 9 para {config.tecla_2}",True,"grey")
+text_surface_3 = text_3.render(f"Presiona 8 para {config.tecla_3}",True,"grey")
+image = py.image.load("image.jpg")
 running = True
 while running:
     for event in py.event.get():
@@ -45,10 +47,11 @@ while running:
             for buy in tecla:
                 key.press_and_release(buy)
                 py.time.delay(160)
-    screen.fill(('black'))
+    screen.blit(image,(0,0))
+    screen.blit(intro,(50,50))
     screen.blit(text_surface,(50,100))
-    screen.blit(text_surface_2,(50,200))
-    screen.blit(text_surface_3,(50,300))
+    screen.blit(text_surface_2,(50,150))
+    screen.blit(text_surface_3,(50,250))
     py.display.flip()
     time.tick(60)
 
